@@ -1020,7 +1020,7 @@ TYPED_TEST(TestSymbolGenerator, MatchUnionReturnSymbols) {
   EXPECT_EQ(symbol_table.max_position(), 8);
 }
 
-TYPED_TEST(TestSymbolGenerator, MatchUnionParameterNameThrowSemanticExpcetion) {
+TYPED_TEST(TestSymbolGenerator, MatchUnionParameterNameThrowSemanticException) {
   // WITH 1 as X, 2 AS Y RETURN * UNION RETURN 3 AS Z, 4 AS Y
   auto ret = this->storage.template Create<Return>();
   ret->body_.all_identifiers = true;
@@ -1029,7 +1029,7 @@ TYPED_TEST(TestSymbolGenerator, MatchUnionParameterNameThrowSemanticExpcetion) {
   EXPECT_THROW(memgraph::query::MakeSymbolTable(query), SemanticException);
 }
 
-TYPED_TEST(TestSymbolGenerator, MatchUnionParameterNumberThrowSemanticExpcetion) {
+TYPED_TEST(TestSymbolGenerator, MatchUnionParameterNumberThrowSemanticException) {
   // WITH 1 as X, 2 AS Y RETURN * UNION RETURN 4 AS Y
   auto ret = this->storage.template Create<Return>();
   ret->body_.all_identifiers = true;
