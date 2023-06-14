@@ -119,7 +119,7 @@ def _start_instance(name, args, log_file, setup_queries, use_ssl, procdir, data_
         binary_args.append("--query-modules-directory=" + procdir)
 
     mg_instance.start(args=binary_args, setup_queries=setup_queries)
-    assert mg_instance.is_running(), "An error occured after starting Memgraph instance: application stopped running."
+    assert mg_instance.is_running(), "An error occurred after starting Memgraph instance: application stopped running."
 
 
 def stop_all():
