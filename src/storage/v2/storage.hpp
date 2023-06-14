@@ -151,7 +151,18 @@ class Storage {
 
     virtual IndicesInfo ListAllIndices() const = 0;
 
+<<<<<<< HEAD
     virtual ConstraintsInfo ListAllConstraints() const = 0;
+=======
+    /// Returns void if the transaction has been committed.
+    /// Returns `StorageDataManipulationError` if an error occurs. Error can be:
+    /// * `ReplicationError`: there is at least one SYNC replica that has not confirmed receiving the transaction.
+    /// * `ConstraintViolation`: the changes made by this transaction violate an existence or unique constraint. In this
+    /// case the transaction is automatically aborted.
+    /// @throw std::bad_alloc
+    utils::BasicResult<StorageDataManipulationError, void> Commit(
+        std::optional<uint64_t> desired_commit_timestamp = {});
+>>>>>>> 483563e (spelling: occurs)
 
     // NOLINTNEXTLINE(google-default-arguments)
     virtual utils::BasicResult<StorageDataManipulationError, void> Commit(
