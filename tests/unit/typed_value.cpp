@@ -374,7 +374,7 @@ TYPED_TEST(TypedValueArithmeticTest, Difference) {
 
 TYPED_TEST(TypedValueArithmeticTest, Negate) { EXPECT_NO_THROW(-TypedValue(memgraph::utils::Duration(1))); }
 
-TYPED_TEST(TypedValueArithmeticTest, Divison) {
+TYPED_TEST(TypedValueArithmeticTest, Division) {
   this->ExpectArithmeticThrowsAndNull(false, [](const TypedValue &a, const TypedValue &b) { return a / b; });
   EXPECT_THROW(TypedValue(1) / TypedValue(0), TypedValueException);
 
