@@ -1503,7 +1503,7 @@ TYPED_TEST(QueryPlanTest, NodeFilterSet) {
   ASSERT_TRUE(dba.InsertEdge(&v1, &v3, edge_type).HasValue());
   dba.AdvanceCommand();
   // Create operations which match (v1 {prop: 42}) -- (v) and increment the
-  // v1.prop. The expected result is two incremenentations, since v1 is matched
+  // v1.prop. The expected result is two incrementations, since v1 is matched
   // twice for 2 edges it has.
   SymbolTable symbol_table;
   // MATCH (n {prop: 42}) -[r]- (m)
