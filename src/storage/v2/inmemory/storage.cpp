@@ -2066,7 +2066,7 @@ utils::FileRetainer::FileLockerAccessor::ret_type InMemoryStorage::UnlockPath() 
       return ret;
     }
   }
-  // We use locker accessor in seperate scope so we don't produce deadlock
+  // We use locker accessor in separate scope so we don't produce deadlock
   // after we call clean queue.
   file_retainer_.CleanQueue();
   return true;
