@@ -36,7 +36,7 @@ class ConstraintsTest : public testing::Test {
   const std::string testSuite = "storage_v2_constraints";
 
   ConstraintsTest() {
-    /// TODO: andi How to make this better? Because currentlly for every test changed you need to create a configuration
+    /// TODO: andi How to make this better? Because currently for every test changed you need to create a configuration
     config_ = disk_test_utils::GenerateOnDiskConfig(testSuite);
     storage = std::make_unique<StorageType>(config_);
     prop1 = storage->NameToProperty("prop1");
