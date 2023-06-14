@@ -22,7 +22,7 @@
 #include "storage/v2/inmemory/storage.hpp"
 
 /*
-Tests rely on the fact that interpreters are sequentially added to runninng_interpreters to get transaction_id of its
+Tests rely on the fact that interpreters are sequentially added to running_interpreters to get transaction_id of its
 corresponding interpreter/.
 */
 template <typename StorageType>
