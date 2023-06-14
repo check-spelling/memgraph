@@ -37,7 +37,7 @@ InMemoryLabelPropertyIndex::InMemoryLabelPropertyIndex(Indices *indices, Constra
 
 bool InMemoryLabelPropertyIndex::CreateIndex(LabelId label, PropertyId property,
                                              utils::SkipList<Vertex>::Accessor vertices,
-                                             const std::optional<ParalellizedIndexCreationInfo> &parallel_exec_info) {
+                                             const std::optional<ParallelizedIndexCreationInfo> &parallel_exec_info) {
   auto create_index_seq = [this](LabelId label, PropertyId property, utils::SkipList<Vertex>::Accessor &vertices,
                                  std::map<std::pair<LabelId, PropertyId>, utils::SkipList<Entry>>::iterator it) {
     using IndexAccessor = decltype(it->second.access());
@@ -53,7 +53,7 @@ bool InMemoryLabelPropertyIndex::CreateIndex(LabelId label, PropertyId property,
   auto create_index_par =
       [this](LabelId label, PropertyId property, utils::SkipList<Vertex>::Accessor &vertices,
              std::map<std::pair<LabelId, PropertyId>, utils::SkipList<Entry>>::iterator label_property_it,
-             const ParalellizedIndexCreationInfo &parallel_exec_info) {
+             const ParallelizedIndexCreationInfo &parallel_exec_info) {
         using IndexAccessor = decltype(label_property_it->second.access());
 
         CreateIndexOnMultipleThreads(
