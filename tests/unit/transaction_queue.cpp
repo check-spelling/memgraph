@@ -28,7 +28,7 @@ corresponding interpreter/.
 template <typename StorageType>
 class TransactionQueueSimpleTest : public ::testing::Test {
  protected:
-  const std::string testSuite = "transactin_queue";
+  const std::string testSuite = "transaction_queue";
   std::filesystem::path data_directory{std::filesystem::temp_directory_path() / "MG_tests_unit_transaction_queue_intr"};
   memgraph::query::InterpreterContext interpreter_context{
       std::make_unique<StorageType>(disk_test_utils::GenerateOnDiskConfig(testSuite)), {}, data_directory};
