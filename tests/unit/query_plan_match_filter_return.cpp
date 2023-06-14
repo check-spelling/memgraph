@@ -838,7 +838,7 @@ TYPED_TEST(QueryPlanExpandVariable, OneVariableExpansion) {
     EXPECT_EQ(test_expand(0, EdgeAtom::Direction::OUT, 2, 3, reverse), (map_int{{2, 8}}));
     EXPECT_EQ(test_expand(0, EdgeAtom::Direction::OUT, 1, 2, reverse), (map_int{{1, 4}, {2, 8}}));
 
-    // the following tests also check edge-uniqueness (cyphermorphisim)
+    // the following tests also check edge-uniqueness (cyphermorphism)
     EXPECT_EQ(test_expand(0, EdgeAtom::Direction::BOTH, 1, 2, reverse), (map_int{{1, 4}, {2, 12}}));
     EXPECT_EQ(test_expand(1, EdgeAtom::Direction::BOTH, 4, 4, reverse), (map_int{{4, 24}}));
 
@@ -882,7 +882,7 @@ TYPED_TEST(QueryPlanExpandVariable, FineGrainedOneVariableExpansion) {
       EXPECT_EQ(test_expand(0, EdgeAtom::Direction::OUT, 2, 3, reverse, user), (map_int{{2, 8}}));
       EXPECT_EQ(test_expand(0, EdgeAtom::Direction::OUT, 1, 2, reverse, user), (map_int{{1, 4}, {2, 8}}));
 
-      // the following tests also check edge-uniqueness (cyphermorphisim)
+      // the following tests also check edge-uniqueness (cyphermorphism)
       EXPECT_EQ(test_expand(0, EdgeAtom::Direction::BOTH, 1, 2, reverse, user), (map_int{{1, 4}, {2, 12}}));
       EXPECT_EQ(test_expand(1, EdgeAtom::Direction::BOTH, 4, 4, reverse, user), (map_int{{4, 24}}));
 
