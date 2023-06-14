@@ -475,7 +475,7 @@ std::vector<InMemoryStorage::ReplicationClient::RecoveryStep> InMemoryStorage::R
   std::vector<std::filesystem::path> recovery_wal_files;
   auto wal_it = wal_files->begin();
   for (; wal_it != wal_files->end(); ++wal_it) {
-    // Assuming recovery process is correct the snashpot should
+    // Assuming recovery process is correct the snapshot should
     // always retain a single WAL that contains a transaction
     // before its creation
     if (latest_snapshot->start_timestamp < wal_it->to_timestamp) {

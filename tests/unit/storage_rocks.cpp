@@ -92,7 +92,7 @@
 // }
 
 // TEST_F(RocksDBStorageTest, DeserializeVertex) {
-// NOTE: This test would fail in the case of snaphsot isolation because of the way in which RocksDB
+// NOTE: This test would fail in the case of snapshot isolation because of the way in which RocksDB
 // serializes commit timestamp.
 // const char *serialized_vertex = "1|1";
 // auto acc = storage->Access(memgraph::storage::IsolationLevel::READ_UNCOMMITTED);
@@ -104,7 +104,7 @@
 // }
 
 // TEST_F(RocksDBStorageTest, DeserializeEdge) {
-// NOTE: This test would fail in the case of snaphsot isolation because of the way in which RocksDB
+// NOTE: This test would fail in the case of snapshot isolation because of the way in which RocksDB
 // serializes commit timestamp.
 // auto acc = storage->Access(memgraph::storage::IsolationLevel::READ_UNCOMMITTED);
 // auto vertex1 = acc->CreateVertex();
