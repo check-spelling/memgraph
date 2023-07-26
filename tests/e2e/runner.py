@@ -74,7 +74,7 @@ def run(args):
         if "cluster" in workload:
             for name, config in workload["cluster"].items():
                 mg_instance = interactive_mg_runner.MEMGRAPH_INSTANCES[name]
-                # Explicitely check if there are validation queries and skip if
+                # Explicitly check if there are validation queries and skip if
                 # nothing is to validate. If setup queries are dealing with
                 # users, any new connection requires auth details.
                 validation_queries = config.get("validation_queries", [])
