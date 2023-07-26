@@ -203,7 +203,7 @@ bool DiskUniqueConstraints::DeleteVerticesWithRemovedConstraintLabel(uint64_t tr
     }
     return status.ok();
   }
-  spdlog::error("Deletetion of vertices with removed constraint label failed.");
+  spdlog::error("Deletion of vertices with removed constraint label failed.");
   return false;
 }
 
