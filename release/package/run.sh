@@ -65,7 +65,7 @@ make_package () {
         git fetch origin master:master
     fi
     docker exec "$build_container" mkdir -p /memgraph
-    # TODO(gitbuda): Revisit copying the whole repo -> makese sense under CI.
+    # TODO(gitbuda): Revisit copying the whole repo -> makes sense under CI.
     docker cp "$PROJECT_ROOT/." "$build_container:/memgraph/"
 
     container_build_dir="/memgraph/build"
