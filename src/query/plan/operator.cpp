@@ -4613,7 +4613,7 @@ class CallProcedureCursor : public Cursor {
       if (!cleanup_ && proc->cleanup) [[unlikely]] {
         cleanup_.emplace(*proc->cleanup);
       }
-      // Unpluging memory without calling destruct on each object since everything was allocated with this memory
+      // Unplugging memory without calling destruct on each object since everything was allocated with this memory
       // resource
       self_->monotonic_memory.Release();
       result_ =
