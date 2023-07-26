@@ -66,7 +66,7 @@ class DiskUniqueConstraints : public UniqueConstraints {
   std::set<std::pair<LabelId, std::set<PropertyId>>> constraints_;
   std::unique_ptr<RocksDBStorage> kvstore_;
 
-  [[nodiscard]] std::optional<ConstraintViolation> TestIfVertexSatisifiesUniqueConstraint(
+  [[nodiscard]] std::optional<ConstraintViolation> TestIfVertexSatisfiesUniqueConstraint(
       const Vertex &vertex, std::vector<std::vector<PropertyValue>> &unique_storage, const LabelId &constraint_label,
       const std::set<PropertyId> &constraint_properties) const;
 
