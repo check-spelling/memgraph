@@ -139,7 +139,7 @@ void InMemoryStorage::ReplicationClient::TryInitializeClientSync() {
   try {
     InitializeClient();
   } catch (const rpc::RpcFailedException &) {
-    std::unique_lock client_guarde{client_lock_};
+    std::unique_lock client_guard{client_lock_};
     replica_state_.store(replication::ReplicaState::INVALID);
     spdlog::error(utils::MessageWithLink("Failed to connect to replica {} at the endpoint {}.", name_,
                                          rpc_client_->Endpoint(), "https://memgr.ph/replication"));
@@ -343,8 +343,8 @@ uint64_t InMemoryStorage::ReplicationClient::ReplicateCurrentWal() {
   return response.current_commit_timestamp;
 }
 
-/// This method tries to find the optimal path for recoverying a single replica.
-/// Based on the last commit transfered to replica it tries to update the
+/// This method tries to find the optimal path for recovering a single replica.
+/// Based on the last commit transferred to replica it tries to update the
 /// replica using durability files - WALs and Snapshots. WAL files are much
 /// smaller in size as they contain only the Deltas (changes) made during the
 /// transactions while Snapshots contain all the data. For that reason we prefer
@@ -402,7 +402,7 @@ std::vector<InMemoryStorage::ReplicationClient::RecoveryStep> InMemoryStorage::R
     // to send the snapshot.
     if (latest_snapshot) {
       const auto lock_success = locker_acc.AddPath(latest_snapshot->path);
-      MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistant path.");
+      MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistent path.");
       recovery_steps.emplace_back(std::in_place_type_t<RecoverySnapshot>{}, std::move(latest_snapshot->path));
     }
     // if there are no finalized WAL files, snapshot left the current WAL
@@ -434,7 +434,7 @@ std::vector<InMemoryStorage::ReplicationClient::RecoveryStep> InMemoryStorage::R
     }
 
     // Find first WAL that contains up to replica commit, i.e. WAL
-    // that is before the replica commit or conatins the replica commit
+    // that is before the replica commit or contains the replica commit
     // as the last committed transaction OR we managed to find the first WAL
     // file.
     if (replica_commit >= rwal_it->from_timestamp || rwal_it->seq_num == 0) {
@@ -450,7 +450,7 @@ std::vector<InMemoryStorage::ReplicationClient::RecoveryStep> InMemoryStorage::R
       for (auto result_wal_it = wal_files->begin() + distance_from_first; result_wal_it != wal_files->end();
            ++result_wal_it) {
         const auto lock_success = locker_acc.AddPath(result_wal_it->path);
-        MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistant path.");
+        MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistent path.");
         wal_chain.push_back(std::move(result_wal_it->path));
       }
 
@@ -469,13 +469,13 @@ std::vector<InMemoryStorage::ReplicationClient::RecoveryStep> InMemoryStorage::R
   // We didn't manage to find a WAL chain, we need to send the latest snapshot
   // with its WALs
   const auto lock_success = locker_acc.AddPath(latest_snapshot->path);
-  MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistant path.");
+  MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistent path.");
   recovery_steps.emplace_back(std::in_place_type_t<RecoverySnapshot>{}, std::move(latest_snapshot->path));
 
   std::vector<std::filesystem::path> recovery_wal_files;
   auto wal_it = wal_files->begin();
   for (; wal_it != wal_files->end(); ++wal_it) {
-    // Assuming recovery process is correct the snashpot should
+    // Assuming recovery process is correct the snapshot should
     // always retain a single WAL that contains a transaction
     // before its creation
     if (latest_snapshot->start_timestamp < wal_it->to_timestamp) {
@@ -489,14 +489,14 @@ std::vector<InMemoryStorage::ReplicationClient::RecoveryStep> InMemoryStorage::R
 
   for (; wal_it != wal_files->end(); ++wal_it) {
     const auto lock_success = locker_acc.AddPath(wal_it->path);
-    MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistant path.");
+    MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistent path.");
     recovery_wal_files.push_back(std::move(wal_it->path));
   }
 
   // We only have a WAL before the snapshot
   if (recovery_wal_files.empty()) {
     const auto lock_success = locker_acc.AddPath(wal_files->back().path);
-    MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistant path.");
+    MG_ASSERT(!lock_success.HasError(), "Tried to lock a nonexistent path.");
     recovery_wal_files.push_back(std::move(wal_files->back().path));
   }
 

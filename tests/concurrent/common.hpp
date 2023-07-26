@@ -93,7 +93,7 @@ void check_size(TAccessor &acc, long long size) {
       << "Iterator count should be " << size << ", but size is " << iterator_counter;
 }
 
-// Checks if order in list is maintened. It expects map
+// Checks if order in list is maintained. It expects map
 template <typename TAccessor>
 void check_order(TAccessor &acc) {
   if (acc.begin() != acc.end()) {
@@ -114,7 +114,7 @@ void check_zero(size_t key_range, long array[], const char *str) {
 
 void check_set(DynamicBitset<> &db, std::vector<bool> &set) {
   for (int i = 0; i < static_cast<int>(set.size()); i++) {
-    MG_ASSERT(!(set[i] ^ db.at(i)), "Set constraints aren't fullfilled.");
+    MG_ASSERT(!(set[i] ^ db.at(i)), "Set constraints aren't fulfilled.");
   }
 }
 

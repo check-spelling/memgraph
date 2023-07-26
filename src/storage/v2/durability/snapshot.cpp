@@ -465,7 +465,7 @@ LoadPartialConnectivityResult LoadPartialConnectivity(const std::filesystem::pat
 
         EdgeRef edge_ref(Gid::FromUint(*edge_gid));
         if (items.properties_on_edges) {
-          // The snapshot contains the individiual edges only if it was created with a config where properties are
+          // The snapshot contains the individual edges only if it was created with a config where properties are
           // allowed on edges. That means the snapshots that were created without edge properties will only contain the
           // edges in the in/out edges list of vertices, therefore the edges has to be created here.
           if (snapshot_has_edges) {
@@ -501,7 +501,7 @@ LoadPartialConnectivityResult LoadPartialConnectivity(const std::filesystem::pat
 
         EdgeRef edge_ref(Gid::FromUint(*edge_gid));
         if (items.properties_on_edges) {
-          // The snapshot contains the individiual edges only if it was created with a config where properties are
+          // The snapshot contains the individual edges only if it was created with a config where properties are
           // allowed on edges. That means the snapshots that were created without edge properties will only contain the
           // edges in the in/out edges list of vertices, therefore the edges has to be created here.
           if (snapshot_has_edges) {
@@ -1648,7 +1648,7 @@ void CreateSnapshot(Transaction *transaction, const std::filesystem::path &snaps
         if (info.uuid != uuid) continue;
         old_snapshot_files.emplace_back(info.start_timestamp, item.path());
       } catch (const RecoveryFailure &e) {
-        spdlog::warn("Found a corrupt snapshot file {} becuase of: {}", item.path(), e.what());
+        spdlog::warn("Found a corrupt snapshot file {} because of: {}", item.path(), e.what());
         continue;
       }
     }

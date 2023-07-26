@@ -54,7 +54,7 @@ struct Scope {
  * write operation. We let that get evaluated like all other cardinality
  * influencing ops. Also, Merge cardinality modification should be contained (it
  * can never reduce it's input cardinality), but since Merge always happens
- * after the read part, and can't be reoredered, we can ignore that.
+ * after the read part, and can't be reordered, we can ignore that.
  *
  * Limiting and accumulating (Aggregate, OrderBy, Accumulate) operations are
  * cardinality modifiers that always execute at the end of the query part. Their
@@ -63,8 +63,8 @@ struct Scope {
  * allowed.
  *
  * This kind of cost estimation can only be used for comparing logical plans.
- * It's aim is to estimate cost(A) to be less then cost(B) in every case where
- * actual query execution for plan A is less then that of plan B. It can NOT be
+ * It's aim is to estimate cost(A) to be less than cost(B) in every case where
+ * actual query execution for plan A is less than that of plan B. It can NOT be
  * used to estimate how MUCH execution between A and B will differ.
  */
 template <class TDbAccessor>

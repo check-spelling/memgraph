@@ -77,7 +77,7 @@ check() {
     local missing=""
     if [ -v LD_LIBRARY_PATH ]; then
         # On Fedora yum/dnf and python10 use newer glibc which is not compatible
-        # with ours, so we need to momentarely disable env
+        # with ours, so we need to momentarily disable env
         local OLD_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
         LD_LIBRARY_PATH=""
     fi

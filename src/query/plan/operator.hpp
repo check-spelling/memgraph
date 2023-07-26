@@ -499,7 +499,7 @@ class CreateExpand : public memgraph::query::plan::LogicalOperator {
 /// producing a cartesian product of input Pulls and database elements.
 ///
 /// ScanAll can either iterate over the previous graph state (state before
-/// the current transacton+command) or over current state. This is controlled
+/// the current transaction+command) or over current state. This is controlled
 /// with a constructor argument.
 ///
 /// @sa ScanAllByLabel
@@ -569,7 +569,7 @@ class ScanAllByLabel : public memgraph::query::plan::ScanAll {
 };
 
 /// Behaves like @c ScanAll, but produces only vertices with given label and
-/// property value which is inside a range (inclusive or exlusive).
+/// property value which is inside a range (inclusive or exclusive).
 ///
 /// @sa ScanAll
 /// @sa ScanAllByLabel
@@ -785,7 +785,7 @@ class Expand : public memgraph::query::plan::LogicalOperator {
    * Creates an expansion. All parameters except input and input_symbol are
    * forwarded to @c ExpandCommon and are documented there.
    *
-   * @param input Optional logical operator that preceeds this one.
+   * @param input Optional logical operator that precedes this one.
    * @param input_symbol Symbol that points to a VertexAccessor in the frame
    *    that expansion should emanate from.
    */
@@ -874,13 +874,13 @@ struct ExpansionLambda {
 /// This class does not handle node/edge filtering based on
 /// properties, labels and edge types. However, it does handle
 /// filtering on existing node / edge. Additionally it handles's
-/// edge-uniquess (cyphermorphism) because it's not feasable to do
+/// edge-uniqueness (cyphermorphism) because it's not feasible to do
 /// later.
 ///
 /// Filtering on existing means that for a pattern that references
 /// an already declared node or edge (for example in
 /// MATCH (a) MATCH (a)--(b)),
-/// only expansions that match defined equalities are succesfully
+/// only expansions that match defined equalities are successfully
 /// pulled.
 class ExpandVariable : public memgraph::query::plan::LogicalOperator {
  public:
@@ -896,7 +896,7 @@ class ExpandVariable : public memgraph::query::plan::LogicalOperator {
    * Expansion length bounds are both inclusive (as in Neo's Cypher
    * implementation).
    *
-   * @param input Optional logical operator that preceeds this one.
+   * @param input Optional logical operator that precedes this one.
    * @param input_symbol Symbol that points to a VertexAccessor in the frame
    *    that expansion should emanate from.
    * @param type - Either Type::DEPTH_FIRST (default variable-length expansion),
@@ -910,7 +910,7 @@ class ExpandVariable : public memgraph::query::plan::LogicalOperator {
    *    that get expanded (inclusive).
    * @param inner_edge_symbol Like `inner_node_symbol`
    * @param inner_node_symbol For each expansion the node expanded into is
-   *    assigned to this symbol so it can be evaulated by the 'where'
+   *    assigned to this symbol so it can be evaluated by the 'where'
    * expression.
    * @param filter_ The filter that must be satisfied for an expansion to
    * succeed. Can use inner(node/edge) symbols. If nullptr, it is ignored.
@@ -1824,9 +1824,9 @@ class OrderBy : public memgraph::query::plan::LogicalOperator {
   }
 };
 
-/// Merge operator. For every sucessful Pull from the
+/// Merge operator. For every successful Pull from the
 /// input operator a Pull from the merge_match is attempted. All
-/// successfull Pulls from the merge_match are passed on as output.
+/// successful Pulls from the merge_match are passed on as output.
 /// If merge_match Pull does not yield any elements, a single Pull
 /// from the merge_create op is performed.
 ///

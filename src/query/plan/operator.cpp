@@ -958,7 +958,7 @@ class ExpandVariableCursor : public Cursor {
       } else
         return false;
       // else continue with the loop, try to expand again
-      // because we succesfully pulled from the input
+      // because we successfully pulled from the input
     }
   }
 
@@ -1044,7 +1044,7 @@ class ExpandVariableCursor : public Cursor {
     // exists an edge on the frame for this level. If so first remove it.
     DMG_ASSERT(edges_.size() > 0, "Edges are empty");
     if (self_.is_reverse_) {
-      // TODO: This is innefficient, we should look into replacing
+      // TODO: This is inefficient, we should look into replacing
       // vector with something else for TypedValue::List.
       size_t diff = edges_on_frame->size() - std::min(edges_on_frame->size(), edges_.size() - 1U);
       if (diff > 0U) edges_on_frame->erase(edges_on_frame->begin(), edges_on_frame->begin() + diff);
@@ -1528,7 +1528,7 @@ class SingleSourceShortestPathCursor : public query::plan::Cursor {
         edge_list.emplace_back(previous_edge.value());
       }
 
-      // expand only if what we've just expanded is less then max depth
+      // expand only if what we've just expanded is less than max depth
       if (static_cast<int64_t>(edge_list.size()) < upper_bound_) expand_from_vertex(expansion.second);
 
       if (static_cast<int64_t>(edge_list.size()) < lower_bound_) continue;
@@ -4067,7 +4067,7 @@ class UnwindCursor : public Cursor {
         TypedValue input_value = self_.input_expression_->Accept(evaluator);
         if (input_value.type() != TypedValue::Type::List)
           throw QueryRuntimeException("Argument of UNWIND must be a list, but '{}' was provided.", input_value.type());
-        // Copy the evaluted input_value_list to our vector.
+        // Copy the evaluated input_value_list to our vector.
         input_value_ = input_value.ValueList();
         input_value_it_ = input_value_.begin();
       }
@@ -4613,7 +4613,7 @@ class CallProcedureCursor : public Cursor {
       if (!cleanup_ && proc->cleanup) [[unlikely]] {
         cleanup_.emplace(*proc->cleanup);
       }
-      // Unpluging memory without calling destruct on each object since everything was allocated with this memory
+      // Unplugging memory without calling destruct on each object since everything was allocated with this memory
       // resource
       self_->monotonic_memory.Release();
       result_ =
@@ -4652,7 +4652,7 @@ class CallProcedureCursor : public Cursor {
     auto &values = result_row_it_->values;
     // Check that the row has all fields as required by the result signature.
     // C API guarantees that it's impossible to set fields which are not part of
-    // the result record, but it does not gurantee that some may be missing. See
+    // the result record, but it does not guarantee that some may be missing. See
     // `mgp_result_record_insert`.
     if (values.size() != result_signature_size_) {
       throw QueryRuntimeException(
@@ -4839,7 +4839,7 @@ class LoadCsvCursor : public Cursor {
     // No need to check if maybe_file is std::nullopt, as the parser makes sure
     // we can't get a nullptr for the 'file_' member in the LoadCsv clause.
     // Note that the reader has to be given its own memory resource, as it
-    // persists between pulls, so it can't use the evalutation context memory
+    // persists between pulls, so it can't use the evaluation context memory
     // resource.
     return csv::Reader(
         csv::CsvSource::Create(*maybe_file),

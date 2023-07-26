@@ -99,7 +99,7 @@ class InMemoryStorage::ReplicationClient {
   // Replication clients can be removed at any point
   // so to avoid any complexity of checking if the client was removed whenever
   // we want to send part of transaction and to avoid adding some GC logic this
-  // function will run a callback if, after previously callling
+  // function will run a callback if, after previously calling
   // StartTransactionReplication, stream is created.
   void IfStreamingTransaction(const std::function<void(ReplicaStream &handler)> &callback);
 
@@ -169,7 +169,7 @@ class InMemoryStorage::ReplicationClient {
   //  - the implementation is simplified as we have a total control of what
   //    this pool is executing. Also, we can simply queue multiple tasks
   //    and be sure of the execution order.
-  //    Not having mulitple possible threads in the same client allows us
+  //    Not having multiple possible threads in the same client allows us
   //    to ignore concurrency problems inside the client.
   utils::ThreadPool thread_pool_{1};
   std::atomic<replication::ReplicaState> replica_state_{replication::ReplicaState::INVALID};

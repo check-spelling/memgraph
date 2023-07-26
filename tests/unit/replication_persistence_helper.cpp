@@ -88,7 +88,7 @@ TEST_F(ReplicationPersistanceHelperTest, BasicTestAllAttributesButTimeoutInitial
 }
 
 TEST_F(ReplicationPersistanceHelperTest, BasicTestAllAttributesButReplicationRoleInitialized) {
-  // this one is importand for backwards compatibility
+  // this one is important for backwards compatibility
   auto replicas_status = CreateReplicationStatus(
       "name", "ip_address", 0, ReplicationMode::SYNC, std::chrono::seconds(1),
       ReplicationClientConfig::SSL{.key_file = "key_file", .cert_file = "cert_file"}, std::nullopt);

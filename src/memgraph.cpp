@@ -267,7 +267,7 @@ DEFINE_bool(replication_restore_state_on_startup, false, "Restore replication st
 // NOLINTNEXTLINE (cppcoreguidelines-avoid-non-const-global-variables)
 DEFINE_uint64(
     memory_limit, 0,
-    "Total memory limit in MiB. Set to 0 to use the default values which are 100\% of the phyisical memory if the swap "
+    "Total memory limit in MiB. Set to 0 to use the default values which are 100\% of the physical memory if the swap "
     "is enabled and 90\% of the physical memory otherwise.");
 
 namespace {
@@ -727,7 +727,7 @@ void InitSignalHandlers(const std::function<void()> &shutdown_fun) {
   MG_ASSERT(memgraph::utils::SignalHandler::RegisterHandler(memgraph::utils::Signal::Terminate, shutdown,
                                                             block_shutdown_signals),
             "Unable to register SIGTERM handler!");
-  MG_ASSERT(memgraph::utils::SignalHandler::RegisterHandler(memgraph::utils::Signal::Interupt, shutdown,
+  MG_ASSERT(memgraph::utils::SignalHandler::RegisterHandler(memgraph::utils::Signal::Interrupt, shutdown,
                                                             block_shutdown_signals),
             "Unable to register SIGINT handler!");
 }

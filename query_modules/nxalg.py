@@ -195,7 +195,7 @@ def strongly_connected_components(
 
 # networkx.algorithms.connectivity.edge_kcomponents.k_edge_components
 #
-# NOTE: NetworkX 2.4, algorithms/connectivity/edge_kcompnents.py:367. We create
+# NOTE: NetworkX 2.4, algorithms/connectivity/edge_kcomponents.py:367. We create
 # a *copy* of the graph because the algorithm copies the graph using
 # __class__() and tries to modify it.
 @mgp.read_proc
@@ -325,7 +325,7 @@ def dominance_frontiers(ctx: mgp.ProcCtx, start: mgp.Vertex,
                     MemgraphMultiDiGraph(ctx=ctx), start).items()]
 
 
-# networkx.algorithms.dominance.immediate_dominatorss
+# networkx.algorithms.dominance.immediate_dominators
 @mgp.read_proc
 def immediate_dominators(ctx: mgp.ProcCtx, start: mgp.Vertex,
                          ) -> mgp.Record(node=mgp.Vertex,

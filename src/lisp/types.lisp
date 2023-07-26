@@ -1,5 +1,5 @@
 ;;;; This file contains definitions of types used to store meta information on
-;;;; C++ types.  Along with data defintions, you will find various functions
+;;;; C++ types.  Along with data definitions, you will find various functions
 ;;;; and methods for operating on that data.
 
 (in-package #:lcp)
@@ -358,7 +358,7 @@ attempt is made to handle erroneous declarations.
 Note that the function doesn't aim to support the whole of C++'s type
 declaration syntax. Certain declarations just aren't supported.
 
-If the declaration is successfuly parsed, the resulting CPP-TYPE instance is
+If the declaration is successfully parsed, the resulting CPP-TYPE instance is
 returned. Otherwise, if the string is empty or if unsupported constructs were
 used, NIL is returned."
   (check-type type-decl string)
@@ -886,7 +886,7 @@ instantiation."
 
 (defun resolve-typestring-for-super-class (typestring cpp-class)
   "Resolve the typestring TYPESTRING for a superclass. CPP-CLASS is the
-CPP-CLASS instance that subclasss the class named by the typestring and is used
+CPP-CLASS instance that subclass the class named by the typestring and is used
 to perform proper relative lookup, if any."
   (flet ((rec (cpp-type)
            ;; NOTE: This will surely produce the original typestring because

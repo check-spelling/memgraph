@@ -470,7 +470,7 @@ int main(int argc, char **argv) {
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
   spdlog::info("Running a bolt client with following settings:");
-  spdlog::info("Adress: {} ", FLAGS_address);
+  spdlog::info("Address: {} ", FLAGS_address);
   spdlog::info("Port: {} ", FLAGS_port);
   spdlog::info("Username: {} ", FLAGS_username);
   spdlog::info("Password: {} ", FLAGS_password);
@@ -481,7 +481,7 @@ int main(int argc, char **argv) {
   spdlog::info("Input: {}", FLAGS_input);
   spdlog::info("Output: {}", FLAGS_output);
   spdlog::info("Validation: {}", FLAGS_validation);
-  spdlog::info("Time dependend execution: {}", FLAGS_time_dependent_execution);
+  spdlog::info("Time dependent execution: {}", FLAGS_time_dependent_execution);
 
   memgraph::communication::SSLInit sslInit;
 

@@ -35,7 +35,7 @@ corresponding interpreter.
 template <typename StorageType>
 class TransactionQueueMultipleTest : public ::testing::Test {
  protected:
-  const std::string testSuite = "transactin_queue_multiple";
+  const std::string testSuite = "transaction_queue_multiple";
   std::filesystem::path data_directory{std::filesystem::temp_directory_path() /
                                        "MG_tests_unit_transaction_queue_multiple_intr"};
   memgraph::query::InterpreterContext interpreter_context{

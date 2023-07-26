@@ -65,7 +65,7 @@ make_package () {
         git fetch origin master:master
     fi
     docker exec "$build_container" mkdir -p /memgraph
-    # TODO(gitbuda): Revisit copying the whole repo -> makese sense under CI.
+    # TODO(gitbuda): Revisit copying the whole repo -> makes sense under CI.
     docker cp "$PROJECT_ROOT/." "$build_container:/memgraph/"
 
     container_build_dir="/memgraph/build"
@@ -77,7 +77,7 @@ make_package () {
     # migrating to the next version of toolchain do that, and remove the
     # TOOLCHAIN_RUN_DEPS installation from here.
     # TODO(gitbuda): On the other side, having this here allows updating deps
-    # wihout reruning the build containers.
+    # without rerunning the build containers.
     echo "Installing dependencies using '/memgraph/environment/os/$os.sh' script..."
     docker exec "$build_container" bash -c "/memgraph/environment/os/$os.sh install TOOLCHAIN_RUN_DEPS"
     docker exec "$build_container" bash -c "/memgraph/environment/os/$os.sh install MEMGRAPH_BUILD_DEPS"

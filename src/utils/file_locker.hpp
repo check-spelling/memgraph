@@ -29,7 +29,7 @@ namespace memgraph::utils {
  * Helper class used for safer modifying and reading of files
  * by preventing a deletion of a file until the file is not used in any of
  * currently running threads.
- * Also, while a single thread modyifies it's list of locked files, the deletion
+ * Also, while a single thread modifies it's list of locked files, the deletion
  * of ALL the files is delayed.
  *
  * Basic usage of FileRetainer consists of following parts:
@@ -59,7 +59,7 @@ namespace memgraph::utils {
  *   {
  *     // Create accessor to the locker so you can
  *     // add the files which need to be locked.
- *     // Accesor prevents deletion of any files
+ *     // Accessor prevents deletion of any files
  *     // so you safely add multiple files in atomic way
  *     auto accessor = locker.Access();
  *     accessor.AddPath(file1);
@@ -70,7 +70,7 @@ namespace memgraph::utils {
  *
  * void Bar() {
  *   // I want to delete file1.
- *   file_retiner.DeleteFile(file1);
+ *   file_retainer.DeleteFile(file1);
  * }
  *
  * int main() {

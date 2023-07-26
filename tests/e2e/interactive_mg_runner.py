@@ -12,7 +12,7 @@
 # TODO(gitbuda): Add action to print the context/cluster.
 # TODO(gitbuda): Add action to print logs of each Memgraph instance.
 # TODO(gitbuda): Polish naming within script.
-# TODO(gitbuda): Consider moving this somewhere higher in the project or even put inside GQLAlchmey.
+# TODO(gitbuda): Consider moving this somewhere higher in the project or even put inside GQLAlchemy.
 
 # The idea here is to implement simple interactive runner of Memgraph instances because:
 #   * it should be possible to manually create new test cases first
@@ -119,7 +119,7 @@ def _start_instance(name, args, log_file, setup_queries, use_ssl, procdir, data_
         binary_args.append("--query-modules-directory=" + procdir)
 
     mg_instance.start(args=binary_args, setup_queries=setup_queries)
-    assert mg_instance.is_running(), "An error occured after starting Memgraph instance: application stopped running."
+    assert mg_instance.is_running(), "An error occurred after starting Memgraph instance: application stopped running."
 
 
 def stop_all():

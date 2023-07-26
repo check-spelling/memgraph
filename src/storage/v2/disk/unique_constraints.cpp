@@ -93,7 +93,7 @@ std::optional<ConstraintViolation> DiskUniqueConstraints::Validate(
   for (const auto &[constraint_label, constraint_properties] : constraints_) {
     if (IsVertexUnderConstraint(vertex, constraint_label, constraint_properties)) {
       if (auto vertex_check_result =
-              TestIfVertexSatisifiesUniqueConstraint(vertex, unique_storage, constraint_label, constraint_properties);
+              TestIfVertexSatisfiesUniqueConstraint(vertex, unique_storage, constraint_label, constraint_properties);
           vertex_check_result.has_value()) {
         return vertex_check_result.value();
       }
@@ -102,7 +102,7 @@ std::optional<ConstraintViolation> DiskUniqueConstraints::Validate(
   return std::nullopt;
 }
 
-std::optional<ConstraintViolation> DiskUniqueConstraints::TestIfVertexSatisifiesUniqueConstraint(
+std::optional<ConstraintViolation> DiskUniqueConstraints::TestIfVertexSatisfiesUniqueConstraint(
     const Vertex &vertex, std::vector<std::vector<PropertyValue>> &unique_storage, const LabelId &constraint_label,
     const std::set<PropertyId> &constraint_properties) const {
   auto property_values = vertex.properties.ExtractPropertyValues(constraint_properties);
@@ -203,7 +203,7 @@ bool DiskUniqueConstraints::DeleteVerticesWithRemovedConstraintLabel(uint64_t tr
     }
     return status.ok();
   }
-  spdlog::error("Deletetion of vertices with removed constraint label failed.");
+  spdlog::error("Deletion of vertices with removed constraint label failed.");
   return false;
 }
 

@@ -135,9 +135,9 @@ def test_basic_recovery(connection):
     # 7/ We check that all replicas but one have the expected data.
     # 8/ We kill another replica.
     # 9/ We add some data to main.
-    # 10/ We re-add the two replicas droped/killed and check the data.
+    # 10/ We re-add the two replicas dropped/killed and check the data.
     # 11/ We kill another replica.
-    # 12/ Add some more data to main. It must still still occured but exception is expected since one replica is down.
+    # 12/ Add some more data to main. It must still occurred but exception is expected since one replica is down.
     # 13/ Restart the replica
     # 14/ Check the states of replicas.
     # 15/ Add some data again.
@@ -638,11 +638,11 @@ def test_async_replication_when_main_is_killed():
                 break
 
         # 3/
-        # short explaination:
+        # short explanation:
         # res_from_async_replica is an arithmetic sequence with:
         # -first term 0
         # -common difference 1
-        # So we check its properties. If properties are fullfilled, it means the ASYNC replicas received a correct subset of messages
+        # So we check its properties. If properties are fulfilled, it means the ASYNC replicas received a correct subset of messages
         # from main in the correct order.
         # In other word: res_from_async_replica is as [0, 1, ..., n-1, n] where values are consecutive integers. $
         # It should have the two properties:
@@ -1115,7 +1115,7 @@ def test_trigger_on_create_before_commit_with_offline_sync_replica():
     """
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER)
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query("SHOW TRIGGERS;")
-    assert len(res_from_main) == 1, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 1, f"Incorrect result: {res_from_main}"
 
     # 2/
     QUERY_CREATE_NODE = "CREATE (p:Number {name:'Not_Magic'})"
@@ -1124,7 +1124,7 @@ def test_trigger_on_create_before_commit_with_offline_sync_replica():
     # 3/
     QUERY_TO_CHECK = "MATCH (node) return node;"
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_TO_CHECK)
-    assert len(res_from_main) == 2, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 2, f"Incorrect result: {res_from_main}"
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica1"].query(QUERY_TO_CHECK)
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica2"].query(QUERY_TO_CHECK)
 
@@ -1214,7 +1214,7 @@ def test_trigger_on_update_before_commit_with_offline_sync_replica():
     """
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER)
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query("SHOW TRIGGERS;")
-    assert len(res_from_main) == 1, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 1, f"Incorrect result: {res_from_main}"
 
     # 2/
     QUERY_CREATE_NODE = "CREATE (p:Number {name:'Not_Magic', value:0})"
@@ -1227,7 +1227,7 @@ def test_trigger_on_update_before_commit_with_offline_sync_replica():
     # 4/
     QUERY_TO_CHECK = "MATCH (node) return node;"
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_TO_CHECK)
-    assert len(res_from_main) == 2, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 2, f"Incorrect result: {res_from_main}"
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica1"].query(QUERY_TO_CHECK)
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica2"].query(QUERY_TO_CHECK)
 
@@ -1319,7 +1319,7 @@ def test_trigger_on_delete_before_commit_with_offline_sync_replica():
     """
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER)
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query("SHOW TRIGGERS;")
-    assert len(res_from_main) == 1, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 1, f"Incorrect result: {res_from_main}"
 
     # 2/
     QUERY_CREATE_NODE = "CREATE (p:Number {name:'Not_Magic', value:0})"
@@ -1332,7 +1332,7 @@ def test_trigger_on_delete_before_commit_with_offline_sync_replica():
     # 4/
     QUERY_TO_CHECK = "MATCH (node) return node;"
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_TO_CHECK)
-    assert len(res_from_main) == 1, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 1, f"Incorrect result: {res_from_main}"
     assert res_from_main[0][0].properties["name"] == "Node_created_by_trigger"
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica1"].query(QUERY_TO_CHECK)
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica2"].query(QUERY_TO_CHECK)
@@ -1366,7 +1366,7 @@ def test_trigger_on_delete_before_commit_with_offline_sync_replica():
 
     # 8/
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_TO_CHECK)
-    assert len(res_from_main) == 1, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 1, f"Incorrect result: {res_from_main}"
     assert res_from_main[0][0].properties["name"] == "Node_created_by_trigger"
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica2"].query(QUERY_TO_CHECK)
 
@@ -1434,7 +1434,7 @@ def test_trigger_on_create_before_and_after_commit_with_offline_sync_replica():
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER_BEFORE)
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER_AFTER)
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query("SHOW TRIGGERS;")
-    assert len(res_from_main) == 2, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 2, f"Incorrect result: {res_from_main}"
 
     # 2/
     QUERY_CREATE_NODE = "CREATE (p:Number {name:'Not_Magic'})"
@@ -1443,7 +1443,7 @@ def test_trigger_on_create_before_and_after_commit_with_offline_sync_replica():
     # 3/
     QUERY_TO_CHECK = "MATCH (node) return node;"
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_TO_CHECK)
-    assert len(res_from_main) == 3, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 3, f"Incorrect result: {res_from_main}"
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica1"].query(QUERY_TO_CHECK)
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica2"].query(QUERY_TO_CHECK)
 
@@ -1539,7 +1539,7 @@ def test_triggers_on_create_before_commit_with_offline_sync_replica():
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER_FIRST)
     interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_CREATE_TRIGGER_SECOND)
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query("SHOW TRIGGERS;")
-    assert len(res_from_main) == 2, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 2, f"Incorrect result: {res_from_main}"
 
     # 2/
     QUERY_CREATE_NODE = "CREATE (p:Number {name:'Not_Magic'})"
@@ -1548,7 +1548,7 @@ def test_triggers_on_create_before_commit_with_offline_sync_replica():
     # 3/
     QUERY_TO_CHECK = "MATCH (node) return node;"
     res_from_main = interactive_mg_runner.MEMGRAPH_INSTANCES["main"].query(QUERY_TO_CHECK)
-    assert len(res_from_main) == 3, f"Incorect result: {res_from_main}"
+    assert len(res_from_main) == 3, f"Incorrect result: {res_from_main}"
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica1"].query(QUERY_TO_CHECK)
     assert res_from_main == interactive_mg_runner.MEMGRAPH_INSTANCES["sync_replica2"].query(QUERY_TO_CHECK)
 

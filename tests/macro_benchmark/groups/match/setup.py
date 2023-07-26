@@ -31,7 +31,7 @@ MAX_LABELS = 5  # maximum number of labels in a vertex
 MAX_PROPS = 4   # maximum number of properties in a vertex/edge
 MAX_PROP_VALUE = 1000
 
-# some consts used in mutiple files
+# some consts used in multiple files
 LABEL_INDEX = "LabelIndex"
 LABEL_PREFIX = "Label"
 PROP_PREFIX = "Prop"
@@ -79,7 +79,7 @@ def main():
             print(";")
     print("MATCH (n) RETURN assert(count(n) = %d);" % VERTEX_COUNT)
 
-    # create edges stohastically
+    # create edges stochastically
     attempts = VERTEX_COUNT ** 2
     p = EDGE_COUNT / VERTEX_COUNT ** 2
     print("MATCH (a) WITH a MATCH (b) WITH a, b WHERE rand() < %f "

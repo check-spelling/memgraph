@@ -637,7 +637,7 @@ utils::BasicResult<StorageDataManipulationError, void> InMemoryStorage::InMemory
       }
     }
 
-    // Result of validating the vertex against unqiue constraints. It has to be
+    // Result of validating the vertex against unique constraints. It has to be
     // declared outside of the critical section scope because its value is
     // tested for Abort call which has to be done out of the scope.
     std::optional<ConstraintViolation> unique_constraint_violation;
@@ -1139,7 +1139,7 @@ Transaction InMemoryStorage::CreateTransaction(IsolationLevel isolation_level, S
     // Replica should have only read queries and the write queries
     // can come from main instance with any past timestamp.
     // To preserve snapshot isolation we set the start timestamp
-    // of any query on replica to the last commited transaction
+    // of any query on replica to the last committed transaction
     // which is timestamp_ as only commit of transaction with writes
     // can change the value of it.
     if (replication_role_ == replication::ReplicationRole::REPLICA) {
@@ -2066,7 +2066,7 @@ utils::FileRetainer::FileLockerAccessor::ret_type InMemoryStorage::UnlockPath() 
       return ret;
     }
   }
-  // We use locker accessor in seperate scope so we don't produce deadlock
+  // We use locker accessor in separate scope so we don't produce deadlock
   // after we call clean queue.
   file_retainer_.CleanQueue();
   return true;

@@ -23,7 +23,7 @@
 
 /**
  * A thread-safe ring buffer. Multi-producer, multi-consumer. Producers get
- * blocked if the buffer is full. Consumers get returnd a nullopt. First in
+ * blocked if the buffer is full. Consumers get returned a nullopt. First in
  * first out.
  *
  * @tparam TElement - type of element the buffer tracks.
@@ -43,7 +43,7 @@ class RingBuffer {
   /**
    * Emplaces a new element into the buffer. This call blocks until space in the
    * buffer is available. If multiple threads are waiting for space to become
-   * available, there are no order-of-entrace guarantees.
+   * available, there are no order-of-entrance guarantees.
    */
   template <typename... TArgs>
   void emplace(TArgs &&...args) {

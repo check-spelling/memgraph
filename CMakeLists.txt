@@ -28,7 +28,7 @@ else ()
 endif(CCACHE_FOUND AND USE_CCACHE)
 
 # choose a compiler
-# NOTE: must be choosen before use of project() or enable_language()
+# NOTE: must be chosen before use of project() or enable_language()
 find_program(CLANG_FOUND clang)
 find_program(CLANGXX_FOUND clang++)
 if (CLANG_FOUND AND CLANGXX_FOUND)
@@ -298,7 +298,7 @@ set(ENABLE_JEMALLOC ON)
 if (ASAN)
   message(WARNING "Disabling jemalloc as it doesn't work well with ASAN")
   set(ENABLE_JEMALLOC OFF)
-  # Enable Addres sanitizer and get nicer stack traces in error messages.
+  # Enable Address sanitizer and get nicer stack traces in error messages.
   # NOTE: AddressSanitizer uses llvm-symbolizer binary from the Clang
   # distribution to symbolize the stack traces (note that ideally the
   # llvm-symbolizer version must match the version of ASan runtime library).

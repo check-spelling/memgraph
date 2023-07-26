@@ -33,7 +33,7 @@ void NumsBatchInit(struct mgp_list *args, mgp_graph *graph, struct mgp_memory *m
   mgp::memory = memory;
   const auto arguments = mgp::List(args);
   if (arguments.Empty()) {
-    throw std::runtime_error("Expected to recieve argument");
+    throw std::runtime_error("Expected to receive argument");
   }
   if (arguments[0].Type() != mgp::Type::Int) {
     throw std::runtime_error("Wrong type of first arguments");
@@ -61,7 +61,7 @@ void StringsBatchInit(struct mgp_list *args, mgp_graph *graph, struct mgp_memory
   mgp::memory = memory;
   const auto arguments = mgp::List(args);
   if (arguments.Empty()) {
-    throw std::runtime_error("Expected to recieve argument");
+    throw std::runtime_error("Expected to receive argument");
   }
   if (arguments[0].Type() != mgp::Type::Int) {
     throw std::runtime_error("Wrong type of first arguments");

@@ -19,9 +19,9 @@
 #include <vector>
 
 //////////////////////////////////////////////////////
-// "json.hpp" should always come before "antrl4-runtime.h"
+// "json.hpp" should always come before "antlr4-runtime.h"
 // "json.hpp" uses libc's EOF macro while
-// "antrl4-runtime.h" contains a static variable of the
+// "antlr4-runtime.h" contains a static variable of the
 // same name, EOF.
 // This hides the definition of the macro which causes
 // the compilation to fail.
@@ -174,7 +174,7 @@ class ClonedAstGenerator : public Base {
 };
 
 // This generator strips ast, clones it and then plugs stripped out literals in
-// the same way it is done in ast cacheing in interpreter.
+// the same way it is done in ast caching in interpreter.
 class CachedAstGenerator : public Base {
  public:
   Query *ParseQuery(const std::string &query_string) override {
@@ -604,7 +604,7 @@ TEST_P(CypherMainVisitorTest, AdditionSubtractionOperators) {
   ast_generator.CheckLiteral(addition_operator->expression2_, 3);
 }
 
-TEST_P(CypherMainVisitorTest, MulitplicationOperator) {
+TEST_P(CypherMainVisitorTest, MultiplicationOperator) {
   auto &ast_generator = *GetParam();
   auto *query = dynamic_cast<CypherQuery *>(ast_generator.ParseQuery("RETURN 2 * 3"));
   ASSERT_TRUE(query);
@@ -1420,7 +1420,7 @@ TEST_P(CypherMainVisitorTest, RelationshipPatternUpperBoundedWithProperty) {
 //             parser.pattern_parts_.end());
 // }
 
-TEST_P(CypherMainVisitorTest, ReturnUnanemdIdentifier) {
+TEST_P(CypherMainVisitorTest, ReturnUnnamedIdentifier) {
   auto &ast_generator = *GetParam();
   auto *query = dynamic_cast<CypherQuery *>(ast_generator.ParseQuery("RETURN var"));
   ASSERT_TRUE(query);

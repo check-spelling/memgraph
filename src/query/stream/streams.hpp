@@ -145,7 +145,7 @@ class Streams final {
   void StopAll();
 
   /// Return current status for all streams.
-  /// It might happend that the is_running field is out of date if the one of the streams stops during the invocation of
+  /// It might happen that the is_running field is out of date if the one of the streams stops during the invocation of
   /// this function because of an error.
   std::vector<StreamStatus<>> GetStreamInfo() const;
 
@@ -159,7 +159,7 @@ class Streams final {
   /// nullable parameters map.
   ///
   /// @throws StreamsException if the stream doesn't exist
-  /// @throws ConsumerRunningException if the consumer is alredy running
+  /// @throws ConsumerRunningException if the consumer is already running
   /// @throws ConsumerCheckFailedException if the transformation function throws any std::exception during processing
   TransformationResult Check(const std::string &stream_name,
                              std::optional<std::chrono::milliseconds> timeout = std::nullopt,

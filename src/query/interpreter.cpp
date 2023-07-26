@@ -94,7 +94,7 @@ extern const Event TriggersCreated;
 
 extern const Event QueryExecutionLatency_us;
 
-extern const Event CommitedTransactions;
+extern const Event CommittedTransactions;
 extern const Event RollbackedTransactions;
 extern const Event ActiveTransactions;
 }  // namespace memgraph::metrics
@@ -1044,7 +1044,7 @@ struct PullPlan {
 
   // To pull the results from a query we call the `Pull` method on
   // the cursor which saves the results in a Frame.
-  // Becuase we can't find out if there are some saved results in a frame,
+  // Because we can't find out if there are some saved results in a frame,
   // and the cursor cannot deduce if the next pull will have a result,
   // we have to keep track of any unsent results from previous `PullPlan::Pull`
   // manually by using this flag.
@@ -1476,7 +1476,7 @@ PreparedQuery PrepareProfileQuery(ParsedQuery parsed_query, bool in_explicit_tra
 
   // PROFILE isn't allowed inside multi-command (explicit) transactions. This is
   // because PROFILE executes each PROFILE'd query and collects additional
-  // perfomance metadata that it displays to the user instead of the results
+  // performance metadata that it displays to the user instead of the results
   // yielded by the query. Because PROFILE has side-effects, each transaction
   // that is used to execute a PROFILE query *MUST* be aborted. That isn't
   // possible when using multicommand (explicit) transactions (because the user
@@ -1661,7 +1661,7 @@ std::vector<std::vector<TypedValue>> AnalyzeGraphQueryHandler::AnalyzeGraphCreat
           uint64_t count_property_value = std::accumulate(
               values_map.begin(), values_map.end(), 0,
               [](uint64_t prev_value, const auto &prop_value_count) { return prev_value + prop_value_count.second; });
-          // num_distinc_values will never be 0
+          // num_distinct_values will never be 0
           double avg_group_size = static_cast<double>(count_property_value) / static_cast<double>(values_map.size());
           double chi_squared_stat = std::accumulate(
               values_map.begin(), values_map.end(), 0.0, [avg_group_size](double prev_result, const auto &value_entry) {
@@ -3139,7 +3139,7 @@ Interpreter::PrepareResult Interpreter::Prepare(const std::string &query_string,
           IsCallBatchedProcedureQuery(clauses) || std::any_of(clauses.begin(), clauses.end(), [](const auto *clause) {
             return clause->GetTypeInfo() == LoadCsv::kType;
           })) {
-        // Using PoolResource without MonotonicMemoryResouce for LOAD CSV reduces memory usage.
+        // Using PoolResource without MonotonicMemoryResource for LOAD CSV reduces memory usage.
         // QueryExecution MemoryResource is mostly used for allocations done on Frame and storing `row`s
         query_executions_[query_executions_.size() - 1] = std::make_unique<QueryExecution>(utils::PoolResource(
             128, kExecutionPoolMaxBlockSize, utils::NewDeleteResource(), utils::NewDeleteResource()));
@@ -3414,7 +3414,7 @@ void Interpreter::Commit() {
   }
 
   utils::OnScopeExit update_metrics([]() {
-    memgraph::metrics::IncrementCounter(memgraph::metrics::CommitedTransactions);
+    memgraph::metrics::IncrementCounter(memgraph::metrics::CommittedTransactions);
     memgraph::metrics::DecrementCounter(memgraph::metrics::ActiveTransactions);
   });
 
@@ -3455,7 +3455,7 @@ void Interpreter::Commit() {
   };
   utils::OnScopeExit members_reseter(reset_necessary_members);
 
-  auto commit_confirmed_by_all_sync_repplicas = true;
+  auto commit_confirmed_by_all_sync_replicas = true;
 
   auto maybe_commit_error = db_accessor_->Commit();
   if (maybe_commit_error.HasError()) {
@@ -3463,10 +3463,10 @@ void Interpreter::Commit() {
 
     std::visit(
         [&execution_db_accessor = execution_db_accessor_,
-         &commit_confirmed_by_all_sync_repplicas]<typename T>(T &&arg) {
+         &commit_confirmed_by_all_sync_replicas]<typename T>(T &&arg) {
           using ErrorType = std::remove_cvref_t<T>;
           if constexpr (std::is_same_v<ErrorType, storage::ReplicationError>) {
-            commit_confirmed_by_all_sync_repplicas = false;
+            commit_confirmed_by_all_sync_replicas = false;
           } else if constexpr (std::is_same_v<ErrorType, storage::ConstraintViolation>) {
             const auto &constraint_violation = arg;
             auto &label_name = execution_db_accessor->LabelToName(constraint_violation.label);
@@ -3497,9 +3497,9 @@ void Interpreter::Commit() {
   }
 
   // The ordered execution of after commit triggers is heavily depending on the exclusiveness of
-  // db_accessor_->Commit(): only one of the transactions can be commiting at the same time, so when the commit is
+  // db_accessor_->Commit(): only one of the transactions can be committing at the same time, so when the commit is
   // finished, that transaction probably will schedule its after commit triggers, because the other transactions that
-  // want to commit are still waiting for commiting or one of them just started commiting its changes. This means the
+  // want to commit are still waiting for committing or one of them just started committing its changes. This means the
   // ordered execution of after commit triggers are not guaranteed.
   if (trigger_context && interpreter_context_->trigger_store.AfterCommitTriggers().size() > 0) {
     interpreter_context_->after_commit_trigger_pool.AddTask(
@@ -3513,7 +3513,7 @@ void Interpreter::Commit() {
   }
 
   SPDLOG_DEBUG("Finished committing the transaction");
-  if (!commit_confirmed_by_all_sync_repplicas) {
+  if (!commit_confirmed_by_all_sync_replicas) {
     throw ReplicationException("At least one SYNC replica has not confirmed committing last transaction.");
   }
 }

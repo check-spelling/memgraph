@@ -75,7 +75,7 @@ class MemgraphInstanceRunner:
         cursor.close()
         conn.close()
 
-    # NOTE: Both query and get_connection may esablish new connection -> auth
+    # NOTE: Both query and get_connection may establish new connection -> auth
     # details required -> username/password should be optional arguments.
     def query(self, query, conn=None, username="", password=""):
         new_conn = conn is None

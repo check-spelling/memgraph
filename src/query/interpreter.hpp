@@ -399,7 +399,7 @@ class Interpreter final {
   // For example, we cannot delete the prepared query from the vector because
   // every prepared query after the deleted one will be moved by one place
   // making their qid not equal to the their index inside the vector.
-  // To avoid this, we use unique_ptr with which we manualy control construction
+  // To avoid this, we use unique_ptr with which we manually control construction
   // and deletion of a single query execution, i.e. when a query finishes,
   // we reset the corresponding unique_ptr.
   std::vector<std::unique_ptr<QueryExecution>> query_executions_;
@@ -410,7 +410,7 @@ class Interpreter final {
 
   // This cannot be std::optional because we need to move this accessor later on into a lambda capture
   // which is assigned to std::function. std::function requires every object to be copyable, so we
-  // move this unique_ptr into a shrared_ptr.
+  // move this unique_ptr into a shared_ptr.
   std::unique_ptr<storage::Storage::Accessor> db_accessor_;
   std::optional<DbAccessor> execution_db_accessor_;
   std::optional<TriggerContextCollector> trigger_context_collector_;

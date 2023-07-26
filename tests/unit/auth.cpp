@@ -101,7 +101,7 @@ TEST_F(AuthWithStorage, Authenticate) {
   ASSERT_NE(auth.Authenticate("test", "123"), std::nullopt);
   ASSERT_NE(auth.Authenticate("test", "456"), std::nullopt);
 
-  ASSERT_EQ(auth.Authenticate("nonexistant", "123"), std::nullopt);
+  ASSERT_EQ(auth.Authenticate("nonexistent", "123"), std::nullopt);
 }
 
 TEST_F(AuthWithStorage, UserRolePermissions) {
@@ -170,7 +170,7 @@ TEST_F(AuthWithStorage, UserRoleFineGrainedAccessHandler) {
   auto user = auth.GetUser("test");
   ASSERT_NE(user, std::nullopt);
 
-  // Test initial user fine grained access permissions.
+  // Test initial user fine-grained access permissions.
   ASSERT_EQ(user->fine_grained_access_handler().label_permissions(), FineGrainedAccessPermissions{});
   ASSERT_EQ(user->fine_grained_access_handler().edge_type_permissions(), FineGrainedAccessPermissions{});
   ASSERT_EQ(user->fine_grained_access_handler().label_permissions(), user->GetFineGrainedAccessLabelPermissions());

@@ -73,7 +73,7 @@ start_all () {
     echo "~~~~ OPERATING ON $docker_image as $docker_name..."
     docker_run "$docker_name" "$docker_image"
     docker_exec "$docker_name" "/memgraph/environment/os/$script_name.sh install NEW_DEPS"
-    echo "---- DONE EVERYHING FOR $docker_image as $docker_name..."
+    echo "---- DONE EVERYTHING FOR $docker_image as $docker_name..."
     echo ""
   done
 }
@@ -88,7 +88,7 @@ check_all () {
     echo ""
     echo "~~~~ OPERATING ON $docker_image as $docker_name..."
     docker_exec "$docker_name" "/memgraph/environment/os/$script_name.sh check NEW_DEPS"
-    echo "---- DONE EVERYHING FOR $docker_image as $docker_name..."
+    echo "---- DONE EVERYTHING FOR $docker_image as $docker_name..."
     echo ""
   done
 }

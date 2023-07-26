@@ -59,10 +59,10 @@ class OutputData:
 
     def dump(self, print_f=print):
         '''
-        Dumps output using the given ouput function.
+        Dumps output using the given output function.
 
         Args:
-            print_f - the function that consumes ouptput. Defaults to
+            print_f - the function that consumes output. Defaults to
             the 'print' function.
         '''
         print_f("Output data:")
@@ -113,7 +113,7 @@ def batch(input, batch_size):
     Return:
         a generator that yields batches of elements.
     """
-    assert batch_size > 1, "Batch size must be greater then zero"
+    assert batch_size > 1, "Batch size must be greater than zero"
 
     batch = []
     for element in input:
@@ -189,7 +189,7 @@ def bolt_session(url, auth, ssl=False):
         driver.close()
 
 
-# If you are using session with multiprocessing take a look at SesssionCache
+# If you are using session with multiprocessing take a look at SessionCache
 # in bipartite for an idea how to reuse sessions.
 def argument_session(args):
     '''
@@ -239,7 +239,7 @@ def periodically_execute(callable, args, interval, daemon=True):
         callable - the callable to call
         args - arguments to pass to callable
         interval - time (in seconds) between two calls
-        deamon - if the execution thread should be a daemon
+        daemon - if the execution thread should be a daemon
     """
     def periodic_call():
         while True:

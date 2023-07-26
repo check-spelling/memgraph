@@ -216,7 +216,7 @@ TEST_F(ReplicationTest, BasicSynchronousReplicationTest) {
   // label index create
   // label property index create
   // existence constraint create
-  // unique constriant create
+  // unique constraint create
   const auto *label = "label";
   const auto *property = "property";
   const auto *property_extra = "property_extra";
@@ -252,7 +252,7 @@ TEST_F(ReplicationTest, BasicSynchronousReplicationTest) {
   // label index drop
   // label property index drop
   // existence constraint drop
-  // unique constriant drop
+  // unique constraint drop
   {
     ASSERT_FALSE(main_store->DropIndex(main_store->NameToLabel(label)).HasError());
     ASSERT_FALSE(
@@ -787,7 +787,7 @@ TEST_F(ReplicationTest, ReplicationReplicaWithExistingEndPoint) {
                   .GetError() == memgraph::storage::InMemoryStorage::RegisterReplicaError::END_POINT_EXISTS);
 }
 
-TEST_F(ReplicationTest, RestoringReplicationAtStartupAftgerDroppingReplica) {
+TEST_F(ReplicationTest, RestoringReplicationAtStartupAfterDroppingReplica) {
   auto main_config = configuration;
   main_config.durability.restore_replication_state_on_startup = true;
   std::unique_ptr<memgraph::storage::Storage> main_store{new memgraph::storage::InMemoryStorage(main_config)};
