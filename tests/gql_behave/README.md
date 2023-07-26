@@ -57,4 +57,4 @@ Side effect aren't tracked or verified, example:
 | -properties | 1 |
 ```
 This is because Memgraph currently doesn't give out the list of side effects
-that happend during query execution.
+that happened during query execution.
