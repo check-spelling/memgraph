@@ -80,7 +80,7 @@ def run(args):
                 validation_queries = config.get("validation_queries", [])
                 if len(validation_queries) == 0:
                     continue
-                # NOTE: If the setup quries create users AND there are some
+                # NOTE: If the setup queries create users AND there are some
                 # validation queries, the connection here has to get the right
                 # username/password.
                 conn = mg_instance.get_connection()
